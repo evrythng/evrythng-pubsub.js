@@ -1,0 +1,39 @@
+{
+  "name": "evrythng-pubusb",
+  "description": "Plugin for evrythng.js that adds PubSub connectivity with MQTT and MQTT over WebSockets.",
+  "main": "dist/evrythng-pubusb.js",
+  "authors": [
+    "EVRYTHNG Ltd. <support@evrythng.com>"
+  ],
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "evrythng",
+    "evt",
+    "iot",
+    "wot",
+    "internet of things",
+    "web of things",
+    "evrythng-mqtt",
+    "evrythng-ws",
+    "thngpush",
+    "thng-push"
+  ],
+  "homepage": "https://github.com/evrythng/evrythng-pubusb.js",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "test",
+    "docker",
+    "Dockerfile",
+    "*.js"
+  ],
+  "dependencies": {
+    "evrythng": "^5.0.0"
+  }
+}
