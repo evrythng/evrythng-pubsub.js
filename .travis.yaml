@@ -1,0 +1,18 @@
+sudo: required
+
+language: node_js
+
+services:
+  - "docker"
+
+node_js:
+  - "6"
+
+before_install:
+  - pip install --user awscli
+  - export PATH=$PATH:$HOME/.local/bin
+  - eval $(aws ecr get-login --region us-east-1)
+
+install:
+  - docker build -t $IMAGE $EVT_DOCKER_REPO/$APP_NAME:TRAVIS_COMMIT .
+  - docker run --security-opt seccomp:unconfined -v $WORKSPACE/report:/srv/report $EVT_DOCKER_REPO/$APP_NAME:$TRAVIS_COMMIT docker/test.sh
