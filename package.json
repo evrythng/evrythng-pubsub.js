@@ -8,9 +8,7 @@
     "lint": "gulp lint",
     "build": "gulp build",
     "test": "gulp test",
-    "preversion": "git add -f dist/",
-    "docker:build": "docker build -t evrythng-pubsub.js .",
-    "docker:test": "docker run --security-opt seccomp:unconfined evrythng-pubsub.js docker/test.sh"
+    "preversion": "git add -f dist/"
   },
   "repository": {
     "type": "git",
