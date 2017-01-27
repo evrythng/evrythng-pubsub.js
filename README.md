@@ -1,4 +1,4 @@
-# evrythng-pubsub.js
+# evrythng-pubsub.js [![Build Status](https://travis-ci.org/evrythng/evrythng-pubsub.js.svg?branch=master)](https://travis-ci.org/evrythng/evrythng-pubsub.js)
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
 
