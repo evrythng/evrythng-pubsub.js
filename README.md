@@ -1,4 +1,4 @@
-# evrythng-pubsub.js
+# evrythng-pubsub.js [![Build Status](https://travis-ci.org/evrythng/evrythng-pubsub.js.svg?branch=master)](https://travis-ci.org/evrythng/evrythng-pubsub.js)
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
 
@@ -27,7 +27,7 @@ app.scan().then(match => {
 
 ### Browser
 
-To use immutable from a browser, download `dist/evrythng-pubsub.min.js` or use a CDN such as CDNJS or jsDelivr.
+To use evrythng-pubsub.js from a browser, download `dist/evrythng-pubsub.min.js` or use a CDN such as CDNJS or jsDelivr.
 
 Then, add it as a script tag to your page:
 
