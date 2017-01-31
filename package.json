@@ -1,6 +1,6 @@
 {
   "name": "evrythng-pubsub",
-  "version": "1.0.0-pre.0",
+  "version": "1.0.0-pre.1",
   "description": "Plugin for evrythng.js that adds PubSub connectivity with MQTT and MQTT over WebSockets.",
   "main": "dist/evrythng-pubsub.js",
   "jsnext:main": "dist/evrythng-pubsub.es6.js",
