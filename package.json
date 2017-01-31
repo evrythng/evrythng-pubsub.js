@@ -8,7 +8,8 @@
     "lint": "gulp lint",
     "build": "gulp build",
     "test": "gulp test",
-    "preversion": "git add -f dist/"
+    "preversion": "git add -f dist",
+    "postversion": "git rm -rf dist"
   },
   "repository": {
     "type": "git",
