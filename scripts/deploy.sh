@@ -10,4 +10,5 @@ git push --tags
 
 git checkout -
 npm version $1 --no-git-tag-version
+git commit -m $1
 git push
