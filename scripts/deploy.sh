@@ -4,7 +4,8 @@ npm test
 npm run build
 
 git checkout head
-npm version $1
+git add -f dist
+npm version $1 -f
 git push --tags
 
 git checkout -

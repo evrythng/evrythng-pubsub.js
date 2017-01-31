@@ -7,9 +7,7 @@
   "scripts": {
     "lint": "gulp lint",
     "build": "gulp build",
-    "test": "gulp test",
-    "preversion": "git add -f dist",
-    "postversion": "git rm -rf dist"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
