@@ -38,6 +38,6 @@
   "devDependencies": {
     "evrythng": "^5.0.0-pre.2",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-evrythng-tasks": "^0.0.4"
+    "gulp-evrythng-tasks": "^0.0.5"
   }
 }
