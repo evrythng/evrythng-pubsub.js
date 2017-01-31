@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+npm test
+npm run build
+
 git checkout head
 npm version $1
 git push --tags
