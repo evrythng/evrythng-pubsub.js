@@ -20,7 +20,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: $AWS_EVTJS_BUCKET
     local_dir: dist
-    upload-dir: latest
+    upload-dir: js/evrythng-pubsub/latest
     skip_cleanup: true
     on:
       tags: true
@@ -30,7 +30,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: $AWS_EVTJS_BUCKET
     local_dir: dist
-    upload-dir: $TRAVIS_TAG
+    upload-dir: js/evrythng-pubsub/$TRAVIS_TAG
     skip_cleanup: true
     on:
       tags: true
