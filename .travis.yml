@@ -13,3 +13,30 @@ node_js:
 script:
   - npm run build
   - xvfb-run npm test
+deploy:
+  # CDN Latest
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: $AWS_EVTJS_BUCKET
+  local_dir: dist
+  upload-dir: latest
+  skip_cleanup: true
+  on:
+    tags: true
+  # CDN Versioned
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: $AWS_EVTJS_BUCKET
+  local_dir: dist
+  upload-dir: $TRAVIS_TAG
+  skip_cleanup: true
+  on:
+    tags: true
+  # NPM
+  provider: npm
+  api_key: $NPM_TOKEN
+  skip_cleanup: true
+  on:
+    tags: true
