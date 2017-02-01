@@ -1,4 +1,4 @@
-# evrythng-pubsub.js [![Build Status](https://travis-ci.org/evrythng/evrythng-pubsub.js.svg?branch=master)](https://travis-ci.org/evrythng/evrythng-pubsub.js)
+# evrythng-pubsub.js [![Build Status](https://travis-ci.org/evrythng/evrythng-pubsub.js.svg?branch=master)](https://travis-ci.org/evrythng/evrythng-pubsub.js) [![Coverage Status](https://coveralls.io/repos/github/evrythng/evrythng-pubsub.js/badge.svg?branch=v1.x)](https://coveralls.io/github/evrythng/evrythng-pubsub.js?branch=v1.x)
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
 
