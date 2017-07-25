@@ -13,7 +13,7 @@
   describe('EVTPubSub Distribution', () => {
     it('should exist', () => {
       expect(EVTPubSub).toBeDefined()
-      expect(EVT.Resource.subscribe).toBeDefined()
+      expect(EVT._Resource.subscribe).toBeDefined()
     })
   })
 }))

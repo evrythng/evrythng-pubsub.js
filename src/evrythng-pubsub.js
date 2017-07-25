@@ -1,6 +1,6 @@
-import { Resource } from 'evrythng'
+import { _Resource } from 'evrythng'
 
-Resource.subscribe = () => {
+_Resource.subscribe = () => {
   console.log('subscribing')
 }
 

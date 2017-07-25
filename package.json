@@ -33,11 +33,11 @@
   },
   "homepage": "https://github.com/evrythng/evrythng-pubsub.js#readme",
   "peerDependencies": {
-    "evrythng": "^5.0.0-pre.2"
+    "evrythng": "^5.0.0-pre.3"
   },
   "devDependencies": {
-    "evrythng": "^5.0.0-pre.2",
+    "evrythng": "^5.0.0-pre.3",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-evrythng-tasks": "^0.0.5"
+    "gulp-evrythng-tasks": "^0.0.12"
   }
 }
