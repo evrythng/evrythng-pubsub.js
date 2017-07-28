@@ -1,7 +1,8 @@
 module.exports = {
   moduleName: 'EVTPubSub',
-  external: 'evrythng',
+  external: ['evrythng', 'mqtt'],
   globals: {
-    'evrythng': 'EVT'
+    'evrythng': 'EVT',
+    'mqtt': 'mqtt'
   }
 }

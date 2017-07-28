@@ -60,3 +60,7 @@ require(['./evrythng.min.js', './evrythng-pubsub.min.js'], (EVT, EVTPubSub) => {
 ```
 
 If you're using browserify, the `evrythng-pubsub npm module also works from the browser.
+
+## TODO
+
+[ ] Fix tests. Make sure MQTT.js can be "rolled up"

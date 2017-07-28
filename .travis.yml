@@ -38,5 +38,6 @@ deploy:
     email: $NPM_EMAIL
     api_key: $NPM_TOKEN
     skip_cleanup: true
+    tag: next
     on:
       tags: true
