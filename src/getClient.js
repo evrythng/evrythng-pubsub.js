@@ -1,4 +1,4 @@
-const { connect } = require('mqtt')
+const mqtt = require('mqtt')
 const { clients, subscriptions } = require('./cache')
 const settings = require('./settings')
 
@@ -44,7 +44,7 @@ const createClient = (scope, options = {}) => {
   }
 
   return new Promise((resolve, reject) => {
-    const client = connect(connectUrl, connectOptions)
+    const client = mqtt.connect(connectUrl, connectOptions)
     client.on('connect', initClient(client, scope, resolve))
     client.on('close', cleanUp(client, scope, reject))
     client.on('error', cleanUp(client, scope, reject))

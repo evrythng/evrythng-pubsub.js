@@ -20,7 +20,7 @@ const browserConfig = {
   output: {
     path,
     library,
-    filename: 'evrythng-pubsub.browser.js',
+    filename: 'evrythng-pubsub.js',
     libraryTarget: 'var'
   },
   module: {
@@ -35,27 +35,6 @@ const browserConfig = {
   }
 }
 
-const nodeConfig = {
-  entry,
-  target: 'node',
-  plugins,
-  output: {
-    path,
-    library,
-    filename: 'evrythng-pubsub.node.js',
-    libraryTarget: 'umd',
-    umdNamedDefine: true,
-    globalObject: 'typeof self !== \'undefined\' ? self : this'
-  },
-  module: {
-    rules: [{
-      test: /\.js$/,
-      exclude: /node_modules/
-    }]
-  }
-}
-
 module.exports = [
-  browserConfig,
-  nodeConfig
+  browserConfig
 ]

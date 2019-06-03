@@ -17,7 +17,7 @@
 const defaultSettings = {
   apiUrl: typeof window === 'undefined'
     // Node
-    ? 'mqtts://mqtt.evrythng.com:8883/mqtt'
+    ? 'mqtts://mqtt.evrythng.com:8883'
     // Browser
     : 'wss://ws.evrythng.com:443/mqtt',
   reconnectPeriod: 1000,
