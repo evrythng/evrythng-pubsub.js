@@ -1,4 +1,4 @@
-import settings from './settings'
+const settings = require('./settings')
 
 /**
  * Override global settings. Ignore unknown settings.
@@ -6,6 +6,8 @@ import settings from './settings'
  * @param {Object} customSettings - Custom settings
  * @returns {Object} new
  */
-export default function setup (customSettings) {
+const setup = function (customSettings) {
   return Object.assign(settings, customSettings)
 }
+
+module.exports = setup

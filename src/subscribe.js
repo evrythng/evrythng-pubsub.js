@@ -1,6 +1,5 @@
-import getClient from './getClient'
-import isFunction from 'lodash-es/isFunction'
-import { subscriptions } from './cache'
+const getClient = require('./getClient')
+const { subscriptions } = require('./cache')
 
 function addSubscription (scope, path, onMessage) {
   let scopeSubscriptions = subscriptions.get(scope)
@@ -35,12 +34,12 @@ function subscribeTopic (client, topic) {
   })
 }
 
-export default async function subscribe (onMessage, options, callback) {
+const subscribe = async function (onMessage, options, callback) {
   if (!onMessage) {
     throw new Error('Message callback missing.')
   }
 
-  if (isFunction(options)) {
+  if (typeof options === 'function') {
     callback = options
     options = {}
   }
@@ -57,3 +56,5 @@ export default async function subscribe (onMessage, options, callback) {
     throw err
   }
 }
+
+module.exports = subscribe

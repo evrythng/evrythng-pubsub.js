@@ -1,4 +1,4 @@
-import { subscriptions } from './cache'
+const { subscriptions } = require('./cache')
 
 function removeSubscription (scope, path) {
   const scopeSubscriptions = subscriptions.get(scope)
@@ -14,7 +14,7 @@ function unsubscribeTopic (client, topic) {
   })
 }
 
-export default async function unsubscribe (callback) {
+const unsubscribe = async function (callback) {
   const client = this.scope.pubsubClient
 
   if (!client) {
@@ -33,3 +33,5 @@ export default async function unsubscribe (callback) {
     throw err
   }
 }
+
+module.exports = unsubscribe

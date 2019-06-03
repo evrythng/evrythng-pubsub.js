@@ -1,12 +1,16 @@
-// Globals
-export { default as settings } from './settings'
-export { default as setup } from './setup'
+const settings = require('./settings')
+const setup = require('./setup')
+const subscribe = require('./subscribe')
+const unsubscribe = require('./unsubscribe')
 
-// Install / Extend core behaviour
-import { _Resource } from 'evrythng'
-import subscribe from './subscribe'
-import unsubscribe from './unsubscribe'
+const PubSub = {
+  settings,
+  setup,
+  install: (api) => {
+    api.resources.Resource.prototype.subscribe = subscribe
+    api.resources.Resource.prototype.unsubscribe = unsubscribe
+    // TODO api.resources.Resource.prototype.publish = publish
+  }
+}
 
-Reflect.defineProperty(_Resource.prototype, 'subscribe', { value: subscribe })
-Reflect.defineProperty(_Resource.prototype, 'unsubscribe', { value: unsubscribe })
-// Reflect.defineProperty(_Resource.prototype, 'publish', { value: publish })
+module.exports = PubSub

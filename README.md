@@ -1,4 +1,4 @@
-# evrythng-pubsub.js [![Build Status](https://travis-ci.org/evrythng/evrythng-pubsub.js.svg?branch=master)](https://travis-ci.org/evrythng/evrythng-pubsub.js) [![Coverage Status](https://coveralls.io/repos/github/evrythng/evrythng-pubsub.js/badge.svg?branch=v1.x)](https://coveralls.io/github/evrythng/evrythng-pubsub.js?branch=v1.x)
+# evrythng-pubsub.js
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
 
@@ -6,23 +6,17 @@
 
 ### Install evrythng-pubsub.js using npm.
 
-```javascript
+```js
 npm install evrythng-pubsub
 ```
 
 Then require it into any module.
 
-```javascript
-const EVT = require('evrythng')
-const EVTPubSub = require('evrythng-pubsub')
+```js
+const evrythng = require('evrythng')
+const PubSub = require('evrythng-pubsub')
 
-EVT.use(EVTPubSub)
-
-/* ... Init app using EVT.js ... */
-
-app.scan().then(match => {
-  app.redirect(match.redirections[0].redirectUrl)
-})
+evrythng.use(PubSub)
 ```
 
 ### Browser
@@ -32,35 +26,8 @@ To use evrythng-pubsub.js from a browser, download `dist/evrythng-pubsub.min.js`
 Then, add it as a script tag to your page:
 
 ```html
-<script src="evrythng.min.js"></script>
-<script src="evrythng-pubsub.min.js"></script>
+<script src="evrythng-pubsub.js"></script>
 <script>
-    EVT.use(EVTPubSub)
-
-    /* ... Init app using EVT.js ... */
-
-    app.scan().then(match => {
-      app.redirect(match.redirections[0].redirectUrl)
-    })
+    evrythng.use(PubSub)
 </script>
 ```
-
-Or use an AMD loader (such as RequireJS):
-
-```javascript
-require(['./evrythng.min.js', './evrythng-pubsub.min.js'], (EVT, EVTPubSub) => {
-    EVT.use(EVTPubSub)
-
-    /* ... Init app using EVT.js ... */
-
-    app.scan().then(match => {
-      app.redirect(match.redirections[0].redirectUrl)
-    })
-})
-```
-
-If you're using browserify, the `evrythng-pubsub npm module also works from the browser.
-
-## TODO
-
-[ ] Fix tests. Make sure MQTT.js can be "rolled up"

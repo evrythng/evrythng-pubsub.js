@@ -1,2 +1,7 @@
-export const clients = new Map()
-export const subscriptions = new Map()
+const clients = new Map()
+const subscriptions = new Map()
+
+module.exports = {
+  clients,
+  subscriptions
+}

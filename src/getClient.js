@@ -1,6 +1,6 @@
-import settings from './settings'
-import { connect } from 'mqtt'
-import { clients, subscriptions } from './cache'
+const { connect } = require('mqtt')
+const { clients, subscriptions } = require('./cache')
+const settings = require('./settings')
 
 function generateClientId (prefix) {
   return prefix + '_' + Math.random().toString(16).substr(2, 8)
@@ -58,7 +58,7 @@ function onMessage (scope, path, message) {
   }
 }
 
-export default async function getClient (scope, options) {
+const getClient = async function (scope, options) {
   let client = clients.get(scope)
 
   if (!client) {
@@ -69,3 +69,5 @@ export default async function getClient (scope, options) {
 
   return client
 }
+
+module.exports = getClient

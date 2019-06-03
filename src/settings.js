@@ -20,10 +20,10 @@ const defaultSettings = {
     : 'wss://ws.evrythng.com:443/mqtt',
   reconnectPeriod: 1000,
   keepAlive: 50,
-  clientIdPrefix: 'evtjs'
+  clientIdPrefix: 'evrythng-pubsub.js'
 }
 
 // Initialize settings with defaults.
 const settings = Object.assign({}, defaultSettings)
 
-export default settings
+module.exports = settings
