@@ -1,60 +1,52 @@
-const getClient = require('./getClient')
 const { subscriptions } = require('./cache')
+const getClient = require('./getClient')
 
-function addSubscription (scope, path, onMessage) {
+const addSubscription = (scope, path, onMessage) => {
   let scopeSubscriptions = subscriptions.get(scope)
   if (!scopeSubscriptions) {
     scopeSubscriptions = {}
     subscriptions.set(scope, scopeSubscriptions)
   }
-  if (!scopeSubscriptions[path]) scopeSubscriptions[path] = []
+
+  if (!scopeSubscriptions[path]) {
+    scopeSubscriptions[path] = []
+  }
+
   scopeSubscriptions[path].push(onMessage)
 }
 
-function jsonHandler (deserialize, onMessage) {
-  return function (message) {
-    // Incoming as Buffer.
-    let response = message.toString()
+const jsonHandler = (deserializer, onMessage) => (message) => {
+  // Incoming as Buffer.
+  let response = message.toString()
 
-    // Try to parse as JSON and then to the corresponding resource class.
-    try {
-      response = deserialize(JSON.parse(response))
-    } catch (e) {}
+  // Try to parse as JSON and then to the corresponding resource class.
+  try {
+    response = deserializer(JSON.parse(response))
+  } catch (e) {}
 
-    onMessage(response)
-  }
+  onMessage(response)
 }
 
-function subscribeTopic (client, topic) {
-  return new Promise((resolve, reject) => {
-    client.subscribe(topic, err => {
-      if (err) reject(err)
-      resolve()
-    })
+const subscribeTopic = (client, topic) => new Promise((resolve, reject) => {
+  client.subscribe(topic, (err) => {
+    if (err) {
+      reject(err)
+      return
+    }
+
+    resolve()
   })
-}
+})
 
-const subscribe = async function (onMessage, options, callback) {
+const subscribe = function (onMessage, options = {}) {
   if (!onMessage) {
-    throw new Error('Message callback missing.')
-  }
-
-  if (typeof options === 'function') {
-    callback = options
-    options = {}
+    throw new Error('onMessage callback missing.')
   }
 
   const messageHandler = jsonHandler(this.deserialize.bind(this), onMessage)
-  const client = await getClient(this.scope, options)
-  try {
-    await subscribeTopic(client, this.path)
-    addSubscription(this.scope, this.path, messageHandler)
-    if (callback) callback(null, client)
-    return client
-  } catch (err) {
-    if (callback) callback(err)
-    throw err
-  }
+  return getClient(this.scope, options)
+    .then(client => subscribeTopic(client, this.path))
+    .then(() => addSubscription(this.scope, this.path, messageHandler))
 }
 
 module.exports = subscribe

@@ -1,37 +1,34 @@
 const { subscriptions } = require('./cache')
 
-function removeSubscription (scope, path) {
+const removeSubscription = (scope, path) => {
   const scopeSubscriptions = subscriptions.get(scope)
-  if (!scopeSubscriptions) Reflect.deleteProperty(scopeSubscriptions, path)
+  if (!scopeSubscriptions) {
+    return
+  }
+
+  delete scopeSubscriptions[path]
 }
 
-function unsubscribeTopic (client, topic) {
-  return new Promise((resolve, reject) => {
-    client.unsubscribe(topic, err => {
-      if (err) reject(err)
-      resolve()
-    })
+const unsubscribeTopic = (client, topic) => new Promise((resolve, reject) => {
+  client.unsubscribe(topic, (err) => {
+    if (err) {
+      reject(err)
+      return
+    }
+
+    resolve()
   })
-}
+})
 
-const unsubscribe = async function (callback) {
+const unsubscribe = function () {
   const client = this.scope.pubsubClient
 
   if (!client) {
-    const err = new Error('Pubsub client not initialized.')
-    if (callback) callback(err)
-    throw err
+    throw new Error('PubSub client not initialized, or is not subscribed')
   }
 
-  try {
-    await unsubscribeTopic(client, this.path)
-    removeSubscription(this.scope, this.path)
-    if (callback) callback(null, client)
-    return client
-  } catch (err) {
-    if (callback) callback(err)
-    throw err
-  }
+  return unsubscribeTopic(client, this.path)
+    .then(() => removeSubscription(this.scope, this.path))
 }
 
 module.exports = unsubscribe

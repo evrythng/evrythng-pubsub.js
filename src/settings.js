@@ -10,20 +10,21 @@
  */
 
 /**
- * Default settings. Never change.
+ * Default settings.
  *
  * @type {Settings}
  */
 const defaultSettings = {
   apiUrl: typeof window === 'undefined'
+    // Node
     ? 'mqtts://mqtt.evrythng.com:8883/mqtt'
+    // Browser
     : 'wss://ws.evrythng.com:443/mqtt',
   reconnectPeriod: 1000,
   keepAlive: 50,
   clientIdPrefix: 'evrythng-pubsub.js'
 }
 
-// Initialize settings with defaults.
 const settings = Object.assign({}, defaultSettings)
 
 module.exports = settings

@@ -2,11 +2,38 @@ const { connect } = require('mqtt')
 const { clients, subscriptions } = require('./cache')
 const settings = require('./settings')
 
-function generateClientId (prefix) {
-  return prefix + '_' + Math.random().toString(16).substr(2, 8)
+const generateClientId = prefix => `${prefix}_${Math.random().toString(16).substr(2, 8)}`
+
+const initClient = (client, scope, callback) => () => {
+  const scopeSubscriptions = subscriptions.get(scope)
+  if (scopeSubscriptions) {
+    Object.keys(scopeSubscriptions).forEach(path => client.subscribe(path))
+  }
+
+  callback(client)
 }
 
-function createClient (scope, options = {}) {
+const cleanUp = (client, scope, callback) => (error) => {
+  clients.delete(scope)
+
+  if (!scope.pubsubClient) {
+    client.end()
+    callback(error)
+    return
+  }
+
+  delete scope.pubsubClient
+}
+
+const onMessage = (scope, path, message) => {
+  const scopeSubscriptions = subscriptions.get(scope)
+  const handlers = scopeSubscriptions && scopeSubscriptions[path]
+  if (handlers) {
+    handlers.forEach(onMessage => onMessage(message))
+  }
+}
+
+const createClient = (scope, options = {}) => {
   const connectUrl = options.apiUrl || settings.apiUrl
   const connectOptions = {
     username: 'authorization',
@@ -25,49 +52,18 @@ function createClient (scope, options = {}) {
   })
 }
 
-function initClient (client, scope, callback) {
-  return function () {
-    const scopeSubscriptions = subscriptions.get(scope)
-
-    if (scopeSubscriptions) {
-      Object.keys(scopeSubscriptions).forEach(path => client.subscribe(path))
-    }
-
-    callback(client)
-  }
-}
-
-function cleanUp (client, scope, callback) {
-  return function (error) {
-    clients.delete(scope)
-
-    if (!scope.pubsubClient) {
-      client.end()
-      callback(error)
-    } else {
-      Reflect.deleteProperty(scope, 'pubsubClient')
-    }
-  }
-}
-
-function onMessage (scope, path, message) {
-  const scopeSubscriptions = subscriptions.get(scope)
-  const handlers = scopeSubscriptions && scopeSubscriptions[path]
-  if (handlers) {
-    handlers.forEach(onMessage => onMessage(message))
-  }
-}
-
-const getClient = async function (scope, options) {
+const getClient = (scope, options) => {
   let client = clients.get(scope)
-
   if (!client) {
-    client = await createClient(scope, options)
-    clients.set(scope, client)
-    scope.pubsubClient = client
+    return createClient(scope, options).then((newClient) => {
+      clients.set(scope, newClient)
+      scope.pubsubClient = newClient
+
+      return newClient
+    })
   }
 
-  return client
+  return Promise.resolve(client)
 }
 
 module.exports = getClient
