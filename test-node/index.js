@@ -14,7 +14,7 @@ const main = async () => {
 
   const trustedApp = new evrythng.TrustedApplication(TRUSTED_API_KEY)
   await trustedApp.init()
-  
+
   await trustedApp.action('all').subscribe(onMessage)
   console.log(`Subscribed to all actions in project ${trustedApp.project}`)
 }

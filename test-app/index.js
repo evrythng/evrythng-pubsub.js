@@ -1,18 +1,18 @@
-evrythng.use(PubSub);
+evrythng.use(PubSub)
 
-const getQueryParam = key => new URLSearchParams(window.location.search).get(key);
+const getQueryParam = key => new URLSearchParams(window.location.search).get(key)
 
 const main = async () => {
-  const apiKey = getQueryParam('trustedApp');
+  const apiKey = getQueryParam('trustedApp')
   if (!apiKey) {
-    alert('Please specify \'trustedApp\' query parameter');
-    return;
+    alert('Please specify \'trustedApp\' query parameter')
+    return
   }
 
-  const trustedApp = new evrythng.TrustedApplication(apiKey);
-  await trustedApp.init();
+  const trustedApp = new evrythng.TrustedApplication(apiKey)
+  await trustedApp.init()
 
-  window.trustedApp = trustedApp;
-};
+  window.trustedApp = trustedApp
+}
 
-main();
+main()

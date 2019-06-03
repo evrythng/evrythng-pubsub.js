@@ -6,7 +6,8 @@
   "browser": "dist/evrythng-pubsub.js",
   "scripts": {
     "build": "webpack --config webpack.config.js --mode production",
-    "build-dev": "webpack --config webpack.config.js --mode development"
+    "build-dev": "webpack --config webpack.config.js --mode development",
+    "lint": "standard"
   },
   "repository": {
     "type": "git",
@@ -36,7 +37,17 @@
     "acorn": "^6.1.1",
     "ajv": "^6.10.0",
     "babel-loader": "^8.0.6",
+    "standard": "^12.0.1",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2"
+  },
+  "standard": {
+    "globals": [
+      "evrythng",
+      "PubSub"
+    ],
+    "env": [
+      "browser"
+    ]
   }
 }

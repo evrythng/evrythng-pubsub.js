@@ -7,11 +7,11 @@ const library = 'PubSub'
 
 const plugins = [
   // Load mqtt.js file without shebang
-  new webpack.NormalModuleReplacementPlugin(/^mqtt$/, "mqtt/dist/mqtt.js"),
+  new webpack.NormalModuleReplacementPlugin(/^mqtt$/, 'mqtt/dist/mqtt.js')
 ]
 
 const babelrc = {
-  presets: ['@babel/preset-env'],
+  presets: ['@babel/preset-env']
 }
 
 const browserConfig = {
