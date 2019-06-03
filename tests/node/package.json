@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "evrythng": "^5.1.0",
-    "evrythng-pubsub": "file:.."
+    "evrythng-pubsub": "file:../.."
   }
 }

@@ -78,8 +78,9 @@ await user.action('all').unsubscribe()
 
 ## Testing
 
-Use the `test-app` and `test-node` directories to test this SDK in browser and
-Node, or run the Mocha test suite using a testable Trusted Application API Key:
+Use the `tests/browser` and `tests/node` directories to test this SDK in the
+browser or Node, or run the Mocha test suite using a testable Trusted
+Application API Key:
 
 ```
 export TRUSTED_API_KEY=a87s9j3h...

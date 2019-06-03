@@ -8,7 +8,7 @@
     "build": "webpack --config webpack.config.js --mode production",
     "build-dev": "webpack --config webpack.config.js --mode development",
     "lint": "standard",
-    "test": "mocha --timeout 10000 tests/index.spec.js"
+    "test": "mocha --timeout 10000 tests/unit/index.spec.js"
   },
   "repository": {
     "type": "git",
