@@ -51,7 +51,8 @@
       "PubSub"
     ],
     "env": [
-      "browser"
+      "browser",
+      "mocha"
     ]
   }
 }

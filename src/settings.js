@@ -25,6 +25,7 @@ const defaultSettings = {
   clientIdPrefix: 'evrythng-pubsub.js'
 }
 
+/** Initialised with default settings */
 const settings = Object.assign({}, defaultSettings)
 
 module.exports = settings
