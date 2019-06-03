@@ -2,13 +2,26 @@
 <html>
   <head>
     <title>evrythng-pubsub.js test page</title>
+    <style type="text/css">
+      * {
+        font-family: sans-serif;
+      }
+
+      .code {
+        font-family: monospace;
+        font-size: 1.2rem;
+      }
+    </style>
   </head>
   <body>
     <h2>evrythng-pubsub.js test page</h2>
-    <p>Open devtools</p>
+    <p>Set the 'trustedApp' query parameter, then open devtools to use the 'trustedApp' object.</p>
+    <p>For example: <span class="code">trustedApp.action('all').subscribe(console.log);</span></p>
+    <p>Then create some project-scoped actions.</p>
 
     <script src="https://d10ka0m22z5ju5.cloudfront.net/js/evrythng/5.1.0/evrythng-5.1.0.js"></script>
-    <script type="text/javascript" src="../dist/evrythng-pubsub.browser.js"></script>
+    <script type="text/javascript" src="../dist/evrythng-pubsub.js"></script>
+
     <script type="text/javascript" src="./index.js"></script>
   </body>
 </html>
