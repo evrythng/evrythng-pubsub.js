@@ -2,6 +2,10 @@
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
 
+Plugin for [`evrythng.js`](https://github.com/evrythng/evrythng.js) (v5.1.0 and
+above) allowing easy subscription and publication to resources such as Thngs,
+products, and actions using either MQTT or WebSockets.
+
 
 ## Install
 
