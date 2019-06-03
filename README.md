@@ -2,12 +2,13 @@
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
 
-## Getting started
 
-### Install evrythng-pubsub.js using npm.
+## Install
 
-```js
-npm install evrythng-pubsub
+### npm
+
+```
+npm i --save evrythng-pubsub
 ```
 
 Then require it into any module.
@@ -19,15 +20,69 @@ const PubSub = require('evrythng-pubsub')
 evrythng.use(PubSub)
 ```
 
-### Browser
+### CDN
 
-To use evrythng-pubsub.js from a browser, download `dist/evrythng-pubsub.min.js` or use a CDN such as CDNJS or jsDelivr.
-
-Then, add it as a script tag to your page:
+Add it as a script tag to your page:
 
 ```html
-<script src="evrythng-pubsub.js"></script>
+<script src="https://d10ka0m22z5ju5.cloudfront.net/js/evrythng-pubsub/1.0.0/evrythng-pubsub-1.0.0.js"></script>
+```
+
+Then use in the same manner as for Node:
+
+
+```html
 <script>
-    evrythng.use(PubSub)
+  evrythng.use(PubSub)
 </script>
+```
+
+
+## Usage
+
+After installing the plugin with `evrythng.use()`, three methods are added to
+all resource types, such as Thngs, products, actions, etc. if they are
+[available as subscription topics](https://developers.evrythng.com/docs/pubsub#section-available-topics).
+
+* `.subscribe(onMessage)` - Subscribe to topic updates with a callback.
+* `.unsubscribe()` - Unsubscribe from topic updates.
+* `.publish(payload)` - Publish to a topic with payload data, such as an action.
+
+
+## Examples
+
+Subscribe to all actions:
+
+```js
+const onActionCreated = (action) => {
+  console.log(`Action created: ${action.id} of type ${action.type}`)
+}
+
+await user.action('all').subscribe(onActionCreated)
+```
+
+Pubish a new action:
+
+```js
+const payload = { type: 'scans', thng: thngId }
+
+await user.action('all').publish(payload)
+```
+
+Unsubscribe from all actions:
+
+```js
+await user.action('all').unsubscribe()
+```
+
+
+## Testing
+
+Use the `test-app` and `test-node` directories to test this SDK in browser and
+Node, or run the Mocha test suite using a testable Trusted Application API Key:
+
+```
+export TRUSTED_API_KEY=a87s9j3h...
+
+npm test
 ```
