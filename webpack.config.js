@@ -2,7 +2,7 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 
 const path = resolve(__dirname, 'dist')
-const entry = './src/evrythng-pubsub.js'
+const entry = './src/index.js'
 const library = 'PubSub'
 
 const plugins = [

@@ -2,7 +2,7 @@
   "name": "evrythng-pubsub",
   "version": "1.0.0",
   "description": "Plugin for evrythng.js that adds PubSub connectivity with MQTT and MQTT over WebSockets.",
-  "main": "src/evrythng-pubsub.js",
+  "main": "src/index.js",
   "browser": "dist/evrythng-pubsub.js",
   "scripts": {
     "build": "webpack --config webpack.config.js --mode production",

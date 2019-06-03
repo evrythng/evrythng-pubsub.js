@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 const evrythng = require('evrythng')
-const PubSub = require('../')
+const PubSub = require('../../')
 
 const { TRUSTED_API_KEY } = process.env
 if (!TRUSTED_API_KEY) {
