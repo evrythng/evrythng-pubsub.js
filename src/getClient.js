@@ -48,7 +48,7 @@ const cleanUp = (client, scope, callback) => (error) => {
 /**
  * When a message arrives from mqtt.js, notify all relevant subscriptions.
  *
- * @param {object} scope - evruthng.js scope.
+ * @param {object} scope - evrythng.js scope.
  * @param {string} path - The APi path, used as MQTT topic.
  * @param {object} message - The received message.
  */
@@ -63,7 +63,7 @@ const onMessage = (scope, path, message) => {
 /**
  * Create a mqtt.js client object and setup connection handlers.
  *
- * @param {object} scope - evruthng.js scope.
+ * @param {object} scope - evrythng.js scope.
  * @param {object} [options] - Optional options such as apiUrl and apiKey.
  * @returns {Promise} Promise that resolves on connection, or rejects on error.
  */
@@ -87,7 +87,7 @@ const createClient = (scope, options = {}) => new Promise((resolve, reject) => {
 /**
  * Get a client for the given scope.
  *
- * @param {object} scope - evruthng.js scope.
+ * @param {object} scope - evrythng.js scope.
  * @param {object} [options] - Optional options such as apiUrl and apiKey.
  * @returns {Promise} Promise that resolves to the new or existing MQTT client.
  */
