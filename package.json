@@ -1,14 +1,14 @@
 {
   "name": "evrythng-pubsub",
-  "version": "1.0.0-pre.0",
+  "version": "1.0.0",
   "description": "Plugin for evrythng.js that adds PubSub connectivity with MQTT and MQTT over WebSockets.",
-  "main": "dist/evrythng-pubsub.js",
-  "jsnext:main": "dist/evrythng-pubsub.es6.js",
+  "main": "src/index.js",
+  "browser": "dist/evrythng-pubsub.js",
   "scripts": {
-    "lint": "gulp lint",
-    "build": "gulp build",
-    "test": "gulp test",
-    "preversion": "git add -f dist/"
+    "build": "webpack --config webpack.config.js --mode production",
+    "build-dev": "webpack --config webpack.config.js --mode development",
+    "lint": "standard",
+    "test": "mocha --timeout 10000 tests/unit/index.spec.js"
   },
   "repository": {
     "type": "git",
@@ -16,15 +16,12 @@
   },
   "keywords": [
     "evrythng",
-    "evt",
     "iot",
     "wot",
     "internet of things",
     "web of things",
     "evrythng-mqtt",
-    "evrythng-ws",
-    "thngpush",
-    "thng-push"
+    "evrythng-ws"
   ],
   "author": "EVRYTHNG Ltd. <support@evrythng.com>",
   "license": "Apache-2.0",
@@ -32,12 +29,30 @@
     "url": "https://github.com/evrythng/evrythng-pubsub.js/issues"
   },
   "homepage": "https://github.com/evrythng/evrythng-pubsub.js#readme",
-  "peerDependencies": {
-    "evrythng": "^5.0.0-pre.2"
+  "dependencies": {
+    "mqtt": "^3.0.0"
   },
   "devDependencies": {
-    "evrythng": "^5.0.0-pre.2",
-    "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-evrythng-tasks": "^0.0.3"
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "acorn": "^6.1.1",
+    "ajv": "^6.10.0",
+    "babel-loader": "^8.0.6",
+    "chai": "^4.2.0",
+    "evrythng": "^5.1.0",
+    "mocha": "^6.1.4",
+    "standard": "^12.0.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2"
+  },
+  "standard": {
+    "globals": [
+      "evrythng",
+      "PubSub"
+    ],
+    "env": [
+      "browser",
+      "mocha"
+    ]
   }
 }

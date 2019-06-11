@@ -1,63 +1,91 @@
-# evrythng-pubsub.js [![Build Status](https://travis-ci.org/evrythng/evrythng-pubsub.js.svg?branch=master)](https://travis-ci.org/evrythng/evrythng-pubsub.js)
+# evrythng-pubsub.js
 
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
+Plugin for [`evrythng.js`](https://github.com/evrythng/evrythng.js) (v5.1.0 and
+above) allowing easy subscription and publication to resources such as Thngs,
+products, and actions using either MQTT or WebSockets.
 
-## Getting started
 
-### Install evrythng-pubsub.js using npm.
+## Install
 
-```javascript
-npm install evrythng-pubsub
+### npm
+
+```
+npm i --save evrythng-pubsub
 ```
 
 Then require it into any module.
 
-```javascript
-const EVT = require('evrythng')
-const EVTPubSub = require('evrythng-pubsub')
+```js
+const evrythng = require('evrythng')
+const PubSub = require('evrythng-pubsub')
 
-EVT.use(EVTPubSub)
-
-/* ... Init app using EVT.js ... */
-
-app.scan().then(match => {
-  app.redirect(match.redirections[0].redirectUrl)
-})
+evrythng.use(PubSub)
 ```
 
-### Browser
+### CDN
 
-To use immutable from a browser, download `dist/evrythng-pubsub.min.js` or use a CDN such as CDNJS or jsDelivr.
-
-Then, add it as a script tag to your page:
+Add it as a script tag to your page:
 
 ```html
-<script src="evrythng.min.js"></script>
-<script src="evrythng-pubsub.min.js"></script>
+<script src="https://d10ka0m22z5ju5.cloudfront.net/js/evrythng-pubsub/1.0.0/evrythng-pubsub-1.0.0.js"></script>
+```
+
+Then use in the same manner as for Node:
+
+
+```html
 <script>
-    EVT.use(EVTPubSub)
-
-    /* ... Init app using EVT.js ... */
-
-    app.scan().then(match => {
-      app.redirect(match.redirections[0].redirectUrl)
-    })
+  evrythng.use(PubSub)
 </script>
 ```
 
-Or use an AMD loader (such as RequireJS):
 
-```javascript
-require(['./evrythng.min.js', './evrythng-pubsub.min.js'], (EVT, EVTPubSub) => {
-    EVT.use(EVTPubSub)
+## Usage
 
-    /* ... Init app using EVT.js ... */
+After installing the plugin with `evrythng.use()`, three methods are added to
+all resource types, such as Thngs, products, actions, etc. if they are
+[available as subscription topics](https://developers.evrythng.com/docs/pubsub#section-available-topics).
 
-    app.scan().then(match => {
-      app.redirect(match.redirections[0].redirectUrl)
-    })
-})
+* `.subscribe(onMessage)` - Subscribe to topic updates with a callback.
+* `.unsubscribe()` - Unsubscribe from topic updates.
+* `.publish(payload)` - Publish to a topic with payload data, such as an action.
+
+
+## Examples
+
+Subscribe to all actions:
+
+```js
+const onActionCreated = (action) => {
+  console.log(`Action created: ${action.id} of type ${action.type}`)
+}
+
+await user.action('all').subscribe(onActionCreated)
 ```
 
-If you're using browserify, the `evrythng-pubsub npm module also works from the browser.
+Pubish a new action:
 
+```js
+const payload = { type: 'scans', thng: thngId }
+
+await user.action('all').publish(payload)
+```
+
+Unsubscribe from all actions:
+
+```js
+await user.action('all').unsubscribe()
+```
+
+
+## Testing
+
+Use the `tests/browser` and `tests/node` directories to test this SDK in the
+browser or Node, or run the Mocha test suite using a testable Trusted
+Application API Key:
+
+```
+export TRUSTED_API_KEY=a87s9j3h...
+
+npm test
+```
