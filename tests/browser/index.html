@@ -7,21 +7,26 @@
         font-family: sans-serif;
       }
 
-      .code {
+      code {
         font-family: monospace;
-        font-size: 1.2rem;
+        font-size: 1.0rem;
       }
     </style>
   </head>
   <body>
     <h2>evrythng-pubsub.js test page</h2>
-    <p>Set the 'trustedApp' query parameter, then open devtools to use the 'trustedApp' object.</p>
-    <p>For example:</p>
-    <span class="code">trustedApp.action('all').subscribe(console.log);</span>
-    <p>Then:</p>
-    <span class="code">trustedApp.action('all').publish({ type: '_MyCustomType' });</span>
+    <h3>Setup</h3>
+    <p>1. Set the 'operator' or 'accessToken' query parameter.</p>
+    <p>2. Open devtools to use the 'operator' or 'accessToken' objects.</p>
+    <p>3. Set the 'apiUrl' parameter to override the default MQTT/WS URL.</p>
+    <br>
+    <h3>Example</h3>
+    <p>Subscribe to all actions:</p>
+    <code>operator.action('all').subscribe(console.log);</code>
+    <p>Then publish an action to test the subscription:</p>
+    <code>operator.action('all').publish({ type: '_MyCustomType' });</code>
 
-    <script src="https://d10ka0m22z5ju5.cloudfront.net/js/evrythng/5.1.0/evrythng-5.1.0.js"></script>
+    <script src="https://d10ka0m22z5ju5.cloudfront.net/js/evrythng/6.0.3/evrythng-6.0.3.js"></script>
     <script type="text/javascript" src="../../dist/evrythng-pubsub.js"></script>
 
     <script type="text/javascript" src="./index.js"></script>
