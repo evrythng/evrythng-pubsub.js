@@ -1,18 +1,40 @@
-evrythng.use(PubSub)
+evrythng.use(PubSub);
 
-const getQueryParam = key => new URLSearchParams(window.location.search).get(key)
+/**
+ * Get a query parameter value.
+ *
+ * @param {string} name - Name of the query parameter.
+ * @returns {string} Value of the query parameter.
+ */
+const getQueryParam = name => new URLSearchParams(window.location.search).get(name);
 
+/**
+ * The main function.
+ */
 const main = async () => {
-  const apiKey = getQueryParam('trustedApp')
-  if (!apiKey) {
-    alert('Please specify \'trustedApp\' query parameter')
-    return
+  const operator = getQueryParam('operator');
+  const accessToken = getQueryParam('accessToken');
+  if (!operator && !accessToken) {
+    alert('Please specify \'operator\' or \'accessToken\' query parameter');
+    return;
   }
 
-  const trustedApp = new evrythng.TrustedApplication(apiKey)
-  await trustedApp.init()
+  const apiUrl = getQueryParam('apiUrl');
+  if (apiUrl) PubSub.setup({ apiUrl });
 
-  window.trustedApp = trustedApp
+  if (operator) {
+    const operatorScope = new evrythng.Operator(operator);
+    await operatorScope.init();
+
+    window.operator = operatorScope;
+  }
+
+  if (accessToken) {
+    const accessTokenScope = new evrythng.AccessToken(accessToken);
+    await accessTokenScope.init();
+
+    window.accessToken = accessTokenScope;
+  }
 }
 
-main()
+main();
